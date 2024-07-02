@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.scollbar-hide::-webkit-scollbar{
+    display: none;
+}
+
+.scollbar-hide{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

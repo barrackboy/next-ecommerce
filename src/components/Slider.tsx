@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 const slides = [
@@ -35,7 +35,7 @@ const slides = [
     title: "Forest Trail",
     description:
       "A peaceful trail through a lush forest, surrounded by towering trees and wildlife.",
-    img: "https://images.pexels.com/photos/356004/pexels-photo-356004.jpeg",
+    img: "https://images.pexels.com/photos/18551900/pexels-photo-18551900/free-photo-of-model-posing-in-thongs.jpeg",
     url: "/",
     bg: "bg-gradient-to-r from-blue-to to-orange-50",
   },
@@ -44,7 +44,7 @@ const slides = [
     title: "Desert Oasis",
     description:
       "A hidden oasis in the desert, offering a refreshing escape with crystal clear water.",
-    img: "https://images.pexels.com/photos/35846/sand-desert-drought-death-valley.jpg",
+    img: "https://images.pexels.com/photos/45853/grey-crowned-crane-bird-crane-animal-45853.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     url: "/",
     bg: "bg-gradient-to-r from-blue-to to-yellow-50",
   },
@@ -52,6 +52,14 @@ const slides = [
 
 const Slider = () => {
   const [current, setCurrent] = useState(0);
+
+  // to make the slider auto slide
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent(current === slides.length - 1 ? 0 : current + 1);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [current]);
   return (
     <div className="h-[calc(100vh-80px)] overflow-hidden">
       <div className="w-max h-full flex transition-all ease-in-out duration-1000" style={{ transform: `translateX(-${current * 100}vw)` }}>
